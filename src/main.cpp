@@ -25,11 +25,11 @@ Logger& getLogger() {
     return *logger;
 }
 
-static void setFullComboUI(UnityEngine::Transform *transform)
+static void setFullComboUI(UnityEngine::GameObject *clearedBannerGo)
 {
     try
     {
-        transform->get_gameObject()->GetComponentsInChildren<TextMeshProUGUI *>()->values[3]->set_text(il2cpp_utils::newcsstr("FULL COMBO"));
+        clearedBannerGo->GetComponentsInChildren<TextMeshProUGUI *>()->get(0)->set_text(il2cpp_utils::newcsstr("FULL COMBO"));
     }
     catch (const std::exception &e)
     {
@@ -39,7 +39,7 @@ static void setFullComboUI(UnityEngine::Transform *transform)
 
     try
     {
-        transform->get_gameObject()->GetComponentsInChildren<HMUI::ImageView *>()->values[3]->set_color(UnityEngine::Color::get_yellow());
+        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()->get(0)->set_color(UnityEngine::Color::get_yellow());
     }
     catch (const std::exception &e)
     {
@@ -48,7 +48,7 @@ static void setFullComboUI(UnityEngine::Transform *transform)
     }
 }
 
-static void setNotFullComboUI(UnityEngine::Transform *transform)
+static void setNotFullComboUI(UnityEngine::GameObject *clearedBannerGo)
 {
     // no need to reset text to LEVEL CLEARED
 
@@ -56,7 +56,7 @@ static void setNotFullComboUI(UnityEngine::Transform *transform)
     try
     {
         const auto originColor = UnityEngine::Color(1, 0.374, 0, 1);
-        transform->get_gameObject()->GetComponentsInChildren<HMUI::ImageView *>()->values[3]->set_color(originColor);
+        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()->get(0)->set_color(originColor);
     }
     catch (const std::exception &e)
     {
@@ -74,9 +74,9 @@ MAKE_HOOK_MATCH(Results, &ResultsViewController::SetDataToUI, void, ResultsViewC
         if (self->levelCompletionResults->fullCombo)
         {
             self->newHighScore = true; // for trigger sounds and fireworks
-            setFullComboUI(self->get_transform());
+            setFullComboUI(self->clearedBannerGo);
         } else {
-            setNotFullComboUI(self->get_transform());
+            setNotFullComboUI(self->clearedBannerGo);
         }
     }
 }
