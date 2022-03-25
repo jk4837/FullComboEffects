@@ -29,7 +29,7 @@ static void setFullComboUI(UnityEngine::GameObject *clearedBannerGo)
 {
     try
     {
-        clearedBannerGo->GetComponentsInChildren<TextMeshProUGUI *>()->get(0)->set_text(il2cpp_utils::newcsstr("FULL COMBO"));
+        clearedBannerGo->GetComponentsInChildren<TextMeshProUGUI *>()[0]->set_text(il2cpp_utils::newcsstr("FULL COMBO"));
     }
     catch (const std::exception &e)
     {
@@ -39,7 +39,7 @@ static void setFullComboUI(UnityEngine::GameObject *clearedBannerGo)
 
     try
     {
-        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()->get(0)->set_color(UnityEngine::Color::get_yellow());
+        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()[0]->set_color(UnityEngine::Color::get_yellow());
     }
     catch (const std::exception &e)
     {
@@ -56,7 +56,7 @@ static void setNotFullComboUI(UnityEngine::GameObject *clearedBannerGo)
     try
     {
         const auto originColor = UnityEngine::Color(1, 0.374, 0, 1);
-        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()->get(0)->set_color(originColor);
+        clearedBannerGo->GetComponentsInChildren<HMUI::ImageView *>()[0]->set_color(originColor);
     }
     catch (const std::exception &e)
     {
@@ -69,14 +69,14 @@ MAKE_HOOK_MATCH(Results, &ResultsViewController::SetDataToUI, void, ResultsViewC
 {
     Results(self);
 
-    if (self->levelCompletionResults->levelEndStateType == LevelCompletionResults::LevelEndStateType::Cleared)
+    if (self->dyn__levelCompletionResults()->dyn_levelEndStateType() == LevelCompletionResults::LevelEndStateType::Cleared)
     {
-        if (self->levelCompletionResults->fullCombo)
+        if (self->dyn__levelCompletionResults()->dyn_fullCombo())
         {
-            self->newHighScore = true; // for trigger sounds and fireworks
-            setFullComboUI(self->clearedBannerGo);
+            self->dyn__newHighScore() = true; // for trigger sounds and fireworks
+            setFullComboUI(self->dyn__clearedBannerGo());
         } else {
-            setNotFullComboUI(self->clearedBannerGo);
+            setNotFullComboUI(self->dyn__clearedBannerGo());
         }
     }
 }
