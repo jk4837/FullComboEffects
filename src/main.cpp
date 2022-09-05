@@ -69,14 +69,14 @@ MAKE_HOOK_MATCH(Results, &ResultsViewController::SetDataToUI, void, ResultsViewC
 {
     Results(self);
 
-    if (self->dyn__levelCompletionResults()->dyn_levelEndStateType() == LevelCompletionResults::LevelEndStateType::Cleared)
+    if (self->levelCompletionResults->levelEndStateType == LevelCompletionResults::LevelEndStateType::Cleared)
     {
-        if (self->dyn__levelCompletionResults()->dyn_fullCombo())
+        if (self->levelCompletionResults->fullCombo)
         {
-            self->dyn__newHighScore() = true; // for trigger sounds and fireworks
-            setFullComboUI(self->dyn__clearedBannerGo());
+            self->newHighScore = true; // for trigger sounds and fireworks
+            setFullComboUI(self->clearedBannerGo);
         } else {
-            setNotFullComboUI(self->dyn__clearedBannerGo());
+            setNotFullComboUI(self->clearedBannerGo);
         }
     }
 }

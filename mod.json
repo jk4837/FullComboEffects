@@ -3,16 +3,16 @@
 	"name": "Full Combo Effects",
 	"id": "FullComboEffects",
 	"author": "Wonda",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"packageId": "com.beatgames.beatsaber",
-	"packageVersion": "1.21.0",
+	"packageVersion": "1.24.0",
 	"description": "Modify the result view when getting full combo.",
 	"dependencies": [],
 	"modFiles": [
 		"libFullComboEffects.so"
 	],
 	"libraryFiles": [
-		"libbeatsaber-hook_3_7_4.so"
+		"libbeatsaber-hook_3_10_0.so"
 	],
 	"fileCopies": []
 }
